@@ -1,0 +1,33 @@
+.example-container {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid red;
+  }
+  
+.example-form {
+padding: 10px;
+
+}
+  
+.mat-form-field  {
+    margin-left: 8px;
+    width: 300px;
+}
+    
+.example-right-align {
+    text-align: right;
+}
+    
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+    
+input.example-right-align {
+    -moz-appearance: textfield;
+}
+  
+button {
+    margin: 10px;
+    width: 250px;
+}

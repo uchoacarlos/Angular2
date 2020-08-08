@@ -4,8 +4,7 @@
 <br>
 
 <div class="example-container">
-  <form class="example-form">
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
       <input matInput placeholder="pat@example.com" [(ngModel)]="login.email" [formControl]="email" required />
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -29,30 +28,4 @@
       <button mat-raised-button color="primary" [routerLink]="['/create-account']">Criar conta</button>
       <button type="button" class="btn btn-primary btn-block">Criar conta</button>
     </div>
-    <br>
-    <p>
-      <mat-form-field appearance="legacy">
-        <mat-label>Legacy form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="standard">
-        <mat-label>Standard form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Outline form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
-      </mat-form-field>
-    </p>
-  </form>
 </div>
