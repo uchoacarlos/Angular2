@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  endpoint: string = ' http://52.91.139.190/fsapi/user/login';
+  endpoint: string = 'http://52.91.139.190/fsapi/user';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
   constructor(
     private http: HttpClient,
-    public router: Router
-  ) {
-  }
+    public router: Router) {}
 
   // Sign-up
   signUp(user: User): Observable<any> {
@@ -33,14 +36,16 @@ export class AuthService {
 
   // Sign-in
   login(user: User) {
-    return this.http.post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token)
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
-        })
-      })
+    this.http.post<User>('http://52.91.139.190/fsapi/users/login', user, httpOptions).subscribe(
+      obj => {
+        console.log('logou com sucesso');
+        localStorage.setItem('access_token', JSON.stringify(obj));
+        this.router.navigateByUrl('/admin');
+      },
+      error => {
+        console.log('erro ao logar');
+      }
+    );
   }
 
   getToken() {
