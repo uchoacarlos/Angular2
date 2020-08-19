@@ -1,11 +1,12 @@
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="mostrarMenu">
   <mat-icon>menu</mat-icon>
-    <span><a routerLink = '/'>Home</a></span>
-    <span><a routerLink = '/contato'>Contato</a></span>
-    <span><a routerLink = '/sobre'>Sobre</a></span>
-    <span><a routerLink = '/login'>Login</a></span>
-    <span><a routerLink = '/create-account'>Cadastro</a></span>
+    <span><a routerLink = ''>Home</a></span>
+    <span><a routerLink = 'admin'>Admin</a></span>
+    <span><a routerLink = 'contato'>Contato</a></span>
+    <span><a routerLink = 'sobre'>Sobre</a></span>
+    <span><a routerLink = 'login'>Login</a></span>
+    <span><a routerLink = 'create-account'>Cadastro</a></span>
     <span class="example-spacer"></span>
   </mat-toolbar>
 
