@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -20,6 +18,7 @@ export class AuthService {
   endpoint: string = 'http://52.91.139.190/fsapi/user';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+  response: any;
 
   constructor(
     private http: HttpClient,
@@ -48,8 +47,13 @@ export class AuthService {
     );
   }
 
+  getUser() {
+    this.response = localStorage.getItem('access_token');
+    return JSON.parse(this.response).user.name;
+  }
+
   getToken() {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem('user');
   }
 
   get isLoggedIn(): boolean {

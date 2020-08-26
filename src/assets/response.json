@@ -1,0 +1,10 @@
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVmMGE5NTRlYTY5M2VkNjZkYzExYThkMSJ9.BbVFHzQnU3vIudpKaZRWLJAHrhJbfKHtayAUU8jR_a0",
+    "user": {
+        "_id": "5f0a954ea693ed66dc11a8d1",
+        "name": "FELIPE S",
+        "email": "fschorles@teste.com",
+        "idEmpresa": "1",
+        "role": "Member"
+    }
+}

@@ -13,10 +13,8 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,10 +35,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthInterceptor } from './pages/login/authconfig.interceptor';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,9 +46,7 @@ import { AuthInterceptor } from './pages/login/authconfig.interceptor';
     CreateAccountComponent,
     AdminComponent,
     AdminDetalheComponent,
-    AdminFormComponent,
-  
-    
+    AdminFormComponent,   
   ],
   imports: [
     BrowserModule,
