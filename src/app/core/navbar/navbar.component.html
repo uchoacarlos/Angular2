@@ -1,5 +1,5 @@
 
-<mat-toolbar color="primary" *ngIf="mostrarMenu">
+<mat-toolbar color="primary" >
   <mat-icon>menu</mat-icon>
     <span><a routerLink = ''>Home</a></span>
     <span><a routerLink = 'admin'>Admin</a></span>
@@ -8,5 +8,7 @@
     <span><a routerLink = 'login'>Login</a></span>
     <span><a routerLink = 'create-account'>Cadastro</a></span>
     <span class="example-spacer"></span>
+    <button type="button"  (click)="logout()" class="btn btn-primary" style="margin: 15px">Logout</button>
   </mat-toolbar>
 
+ 

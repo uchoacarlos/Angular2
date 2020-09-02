@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -21,13 +22,15 @@ export class AuthService {
   response: any;
 
   constructor(
-    private http: HttpClient,
-    public router: Router) {}
+    public http: HttpClient,
+    public router: Router
+    ) {}
 
   // Sign-up
   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
-    return this.http.post(api, user)
+    return this.http.post('http://52.91.139.190/fsapi/user/auth/register-jwt', JSON.stringify(user), httpOptions)
+
+    
       .pipe(
         catchError(this.handleError)
       )
