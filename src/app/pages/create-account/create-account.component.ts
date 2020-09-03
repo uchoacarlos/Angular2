@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
+
   createAccountForm: FormGroup;
 
   constructor(
@@ -17,27 +18,16 @@ export class CreateAccountComponent implements OnInit {
     public router: Router
   ) { 
     this.createAccountForm = this.fb.group({
-      login: [''],
-      name: [''],
-      email: [''],
-      password: [''],
-      confirma_password: [''],
-      idEmpresa: [''],
-      Status: [''],
-      role: ['']
+      'name': [''],
+      'email': [''],
+      'password': [''],
+      'confirma_password': [''],
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
   registerUser() {
-    this.authService.signUp(this.createAccountForm.value).subscribe((res) => {
-      if (res.result) {
-        this.createAccountForm.reset()
-        this.router.navigate(['login']);
-      }
-    })
+    this.authService.signUp(this.createAccountForm.value)
   }
-
 }

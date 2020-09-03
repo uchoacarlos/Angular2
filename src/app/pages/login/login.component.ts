@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { AuthService } from './auth.service';
 
@@ -15,20 +14,18 @@ export class LoginComponent implements OnInit {
  erros: string[];
  submit: boolean;
 
-  constructor(
-    public fb: FormBuilder,
-    public authService: AuthService,
-    public router: Router
-  ) {
+  constructor(public fb: FormBuilder, public authService: AuthService) {}
+
+  ngOnInit() {
+
     this.loginForm = this.fb.group({
       'email': [''],
       'password': ['']
     })
-  }
-
-  ngOnInit() { }
+   }
 
   loginUser() {
+    this.submit = false;
     this.authService.login(this.loginForm.value)
   }
 }

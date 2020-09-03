@@ -1,44 +1,48 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { Register } from '../create-account/register'
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
   })
 };
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  endpoint: string = 'http://52.91.139.190/fsapi/user';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  
+  endpoint: any = 'http://52.91.139.190/fsapi/users';
   currentUser = {};
   response: any;
 
   constructor(
     public http: HttpClient,
-    public router: Router
-    ) {}
+    public router: Router) {}
 
   // Sign-up
-  signUp(user: User): Observable<any> {
-    return this.http.post('http://52.91.139.190/fsapi/user/auth/register-jwt', JSON.stringify(user), httpOptions)
-
-    
-      .pipe(
-        catchError(this.handleError)
-      )
+  signUp(register: Register) {
+    this.http.post<Register>(`${this.endpoint}/auth/register-jwt`, register, httpOptions).subscribe(
+      obj => {
+        console.log('cadastro com sucesso');
+        localStorage.setItem('access_token', JSON.stringify(obj));
+        this.router.navigateByUrl('/login');
+      },
+      error => {
+        console.log('erro ao cadastrar');
+      }
+    );
   }
 
   // Sign-in
   login(user: User) {
-    this.http.post<User>('http://52.91.139.190/fsapi/users/login', user, httpOptions).subscribe(
+    this.http.post<User>(`${this.endpoint}/login`, user, httpOptions).subscribe(
       obj => {
         console.log('logou com sucesso');
         localStorage.setItem('access_token', JSON.stringify(obj));
@@ -74,7 +78,7 @@ export class AuthService {
   // User profile
   getUserProfile(id): Observable<any> {
     let api = `${this.endpoint}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
+    return this.http.get(api, httpOptions ).pipe(
       map((res: Response) => {
         return res || {}
       }),
