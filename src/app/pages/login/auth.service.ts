@@ -83,6 +83,7 @@ export class AuthService {
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
     if (removeToken == null) {
+      this.mostrarMenuEmitter.emit(false);
       this.router.navigate(['login']);
     }
   }
