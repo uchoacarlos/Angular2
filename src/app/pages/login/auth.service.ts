@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { User } from './user';
 import { Register } from '../create-account/register'
 import { Observable, throwError } from 'rxjs';
@@ -22,11 +22,14 @@ export class AuthService {
   currentUser = {};
   response: any;
 
+  public userAuthenticated: boolean = false;
+  mostrarMenuEmitter = new EventEmitter<boolean>();
+
   constructor(
     public http: HttpClient,
     public router: Router) {}
 
-  // Sign-up
+  // Sign-up - cadastra o usuario
   signUp(register: Register) {
     this.http.post<Register>(`${this.endpoint}/auth/register-jwt`, register, httpOptions).subscribe(
       obj => {
@@ -40,12 +43,16 @@ export class AuthService {
     );
   }
 
-  // Sign-in
+  // Sign-in - Faz login  do usuario
   login(user: User) {
     this.http.post<User>(`${this.endpoint}/login`, user, httpOptions).subscribe(
       obj => {
         console.log('logou com sucesso');
         localStorage.setItem('access_token', JSON.stringify(obj));
+
+        this.userAuthenticated = true;
+        this.mostrarMenuEmitter.emit(true);
+
         this.router.navigateByUrl('/admin');
       },
       error => {
@@ -54,6 +61,7 @@ export class AuthService {
     );
   }
 
+  // Pega o nome do usuario
   getUser() {
     this.response = localStorage.getItem('access_token');
     return JSON.parse(this.response).user.name;
@@ -67,6 +75,10 @@ export class AuthService {
     let authToken = localStorage.getItem('access_token');
     return (authToken !== null) ? true : false;
   }
+
+  refresh(): void {
+    window.location.reload();
+}
 
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');

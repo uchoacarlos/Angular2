@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(public fb: FormBuilder, public authService: AuthService) {}
 
   ngOnInit() {
+    
 
     this.loginForm = this.fb.group({
       'email': [''],
@@ -29,3 +30,4 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
   }
 }
+

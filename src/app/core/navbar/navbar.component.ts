@@ -16,15 +16,18 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authService.doLogout()
+    this.authService.doLogout();
+    this.authService.refresh();
+ 
+ 
   }
 
   ngOnInit() {
 
-   /* this.authService.mostrarMenuEmitter.subscribe(
+   this.authService.mostrarMenuEmitter.subscribe(
 
       mostrar => this.mostrarMenu = mostrar
-    );*/
+    );
   }
 
 }
