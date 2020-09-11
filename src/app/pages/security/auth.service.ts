@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { User } from './user';
-import { Register } from '../create-account/register'
+import { User } from './login/user';
+import { Register } from './create-account/register'
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
